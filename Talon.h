@@ -24,4 +24,10 @@ public: Date GetDate();
 public: Time GetTime();
 public: int GetKabinet();
 public: Doctor GetDoctor();
+
+
+	  //functions for demonstarte disadvantages of surface copying
+public: friend void Doctor::ChengeDoctor(std::string);
+public: Doctor& GetLinkDoctor();
+public: void ChengeKabinet(int);
 };

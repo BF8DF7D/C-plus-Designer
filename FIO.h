@@ -12,4 +12,8 @@ public: ~FIO() {};
 
 public: std::array<std::string, 4> GetInfo();
 public: std::string GetFullName();
+
+
+	 //function for demonstrate the disadvantages of surfase copying
+public: void ChangeFullName(std::string);
 };

@@ -29,3 +29,11 @@ std::array<std::string, 4> FIO::GetInfo() {
 std::string FIO::GetFullName() {
 	return full_name;
 }
+
+
+
+
+
+void FIO::ChangeFullName(std::string change) {
+	full_name = change;
+}

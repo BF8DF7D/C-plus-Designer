@@ -4,6 +4,71 @@
 #include <iomanip>
 #include <sstream>
 
+Talon::Talon(Doctor* medic) {
+
+	bool False_Input_Value;
+	enum Limit_Value_for_Number {
+		Quantity_input_value = 1,
+		Minimum_value_for_number = 0,
+		Maximum_number = 999,
+		Clean_input_stream = '\n'
+	};
+
+	do {
+		std::cout << " Номер кабинета: ";
+
+		False_Input_Value = scanf("%d", &kabinet) != Quantity_input_value
+			|| (kabinet <= Minimum_value_for_number || kabinet > Maximum_number)
+			|| std::cin.get() != Clean_input_stream;
+
+		if (False_Input_Value) {
+			while (std::cin.get() != '\n');
+			std::cout << "\n <Номер кабинета введен некорректно>" << std::endl;
+		}
+
+	} while (False_Input_Value);
+
+	this->medic = medic;
+
+	std::cout << " <Ввод завершён>" << std::endl;
+}
+
+Talon::Talon() {
+
+	bool False_Input_Value;
+	enum Limit_Value_for_Number {
+		Quantity_input_value = 1,
+		Minimum_value_for_number = 0,
+		Maximum_number = 999,
+		Clean_input_stream = '\n'
+	};
+
+	do {
+		std::cout << " Номер кабинета: ";
+
+		False_Input_Value = scanf("%d", &kabinet) != Quantity_input_value
+			|| (kabinet <= Minimum_value_for_number || kabinet > Maximum_number)
+			|| std::cin.get() != Clean_input_stream;
+
+		if (False_Input_Value) {
+			while (std::cin.get() != '\n');
+			std::cout << "\n <Номер кабинета введен некорректно>" << std::endl;
+		}
+
+	} while (False_Input_Value);
+	medic = new Doctor();
+}
+
+Talon::Talon(Date inp_date, Time inp_time, int inp_kab, Doctor& inp_medic)
+	: Admission_Date { inp_date }, 
+	Admission_Time { inp_time },
+	kabinet{ inp_kab },
+	medic{ &inp_medic } 
+{
+
+}
+
+
 void Talon::PrintInfo() {
 	std::string name = GetDoctor().GetFIO().GetFullName();
 	std::cout << " | "; 
@@ -71,68 +136,22 @@ Doctor Talon::GetDoctor() {
 	return *medic;
 }
 
-Talon::Talon(Doctor* medic) {
 
-	bool False_Input_Value;
-	enum Limit_Value_for_Number {
-		Quantity_input_value = 1,
-		Minimum_value_for_number = 0,
-		Maximum_number = 999,
-		Clean_input_stream = '\n'
-	};
 
-	do {
-		std::cout << " Номер кабинета: ";
 
-		False_Input_Value = scanf("%d", &kabinet) != Quantity_input_value
-			|| (kabinet <= Minimum_value_for_number || kabinet > Maximum_number)
-			|| std::cin.get() != Clean_input_stream;
 
-		if (False_Input_Value) {
-			while (std::cin.get() != '\n');
-			std::cout << "\n <Номер кабинета введен некорректно>" << std::endl;
-		}
 
-	} while (False_Input_Value);
 
-	this->medic = medic;
 
-	std::cout << " <Ввод завершён>" << std::endl;
+
+void Talon::ChengeKabinet(int change) {
+	kabinet = change;
 }
 
-Talon::Talon() {
-
-	bool False_Input_Value;
-	enum Limit_Value_for_Number {
-		Quantity_input_value = 1,
-		Minimum_value_for_number = 0,
-		Maximum_number = 999,
-		Clean_input_stream = '\n'
-	};
-
-	do {
-		std::cout << " Номер кабинета: ";
-
-		False_Input_Value = scanf("%d", &kabinet) != Quantity_input_value
-			|| (kabinet <= Minimum_value_for_number || kabinet > Maximum_number)
-			|| std::cin.get() != Clean_input_stream;
-
-		if (False_Input_Value) {
-			while (std::cin.get() != '\n');
-			std::cout << "\n <Номер кабинета введен некорректно>" << std::endl;
-		}
-
-	} while (False_Input_Value);
-	medic = new Doctor();
+Doctor& Talon::GetLinkDoctor() {
+	return *medic;
 }
 
-Talon::Talon(Date inp_date, Time inp_time, int inp_kab, Doctor& inp_medic)
-	: Admission_Date { inp_date }, 
-	Admission_Time { inp_time },
-	kabinet{ inp_kab },
-	medic{ &inp_medic } 
-{
-
+void Doctor::ChengeDoctor(std::string change) {
+	Fio.ChangeFullName(change);
 }
-
-
