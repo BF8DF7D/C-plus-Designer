@@ -29,51 +29,50 @@ int main()
     two->PrintInfo();
 
     std::cout << std::endl << std::endl;
-    
-    std::cout << " Есть талон:" << std::endl;
+
+    std::cout << " Конструкторы с одним параметром" << std::endl;
+    std::cout << " Статический" << std::endl;
+    one = Talon(medic);
+    std::cout << std::endl;
     one.PrintInfo();
-    Talon three = one;
-    std::cout << " Поверхностно его скопируем: " << std::endl;
-    three.PrintInfo();
-    std::cout << " Изменим у начального талона статическую переменную кабинет:" << std::endl;
-    one.ChengeKabinet(300);
-    one.PrintInfo();
-    three.PrintInfo();
-    std::cout << " Изменим у начального талона динамическую - ФИО доктора: " << std::endl;
-    one.GetLinkDoctor().ChengeDoctor("Минус поверхностного копирования");
-    one.PrintInfo();
-    three.PrintInfo();
+    std::cout << " Динамический" << std::endl;
+    two = new Talon(medic);
+    std::cout << std::endl;
+    two->PrintInfo();
 
     std::cout << std::endl << std::endl;
-    
+
     std::cout << " Конструкторы без параметров" << std::endl;
     std::cout << " Статический" << std::endl;
-    std::cout << std::endl;
     one = Talon();
     std::cout << std::endl;
     one.PrintInfo();
     std::cout << " Динамический" << std::endl;
-    std::cout << std::endl;
     two = new Talon();
     std::cout << std::endl;
     two->PrintInfo();
 
     std::cout << std::endl << std::endl;
 
-    std::cout << " Конструкторы с одним параметром" << std::endl;
-    std::cout << " Создание параметра:" << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << " Статический" << std::endl;
-    std::cout << std::endl;
-    one = Talon(medic);
-    std::cout << std::endl;
+    std::cout << " Есть талон:" << std::endl;
     one.PrintInfo();
-    std::cout << " Динамический" << std::endl;
-    std::cout << std::endl;
-    two = new Talon(medic);
-    std::cout << std::endl;
-    two->PrintInfo();
+    std::cout << " Поверхностно его скопируем: " << std::endl;
+    Talon three = Talon(date, time, kabinet, *medic);
+    three = one;            //чтобы избежатть использования коснтруктора копирования
+    three.PrintInfo();
+    std::cout << " Изменим у начального талона статическую переменную кабинет:" << std::endl;
+    one.ChengeKabinet(300);
+    one.PrintInfo();
+    three.PrintInfo();
+    std::cout << " Изменим у начального талона динамическую переменную ФИО доктора: " << std::endl;
+    one.GetLinkDoctor().ChengeDoctor("Минус поверхностного копирования");
+    one.PrintInfo();
+    three.PrintInfo();
+    std::cout << " Создадим копию объекта с помощью конструктора и изменим значение" << std::endl;
+    three = Talon(one);
+    one.GetLinkDoctor().ChengeDoctor("Проверка копирования");
+    one.PrintInfo();
+    three.PrintInfo();
 
     _getch();
 }

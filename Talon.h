@@ -10,6 +10,7 @@ private: Doctor* medic;
 public: Talon(Doctor*);
 public: Talon();
 public: Talon(Date, Time, int, Doctor&);
+public: Talon(const Talon&);
 public: ~Talon() {};
 
 public: void PrintInfo();
@@ -30,4 +31,6 @@ public: Doctor GetDoctor();
 public: friend void Doctor::ChengeDoctor(std::string);
 public: Doctor& GetLinkDoctor();
 public: void ChengeKabinet(int);
+
+
 };

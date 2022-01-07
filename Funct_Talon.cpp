@@ -3,9 +3,9 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <cassert>
 
-Talon::Talon(Doctor* medic) {
-
+void InputFormatInt(int& kabinet) {
 	bool False_Input_Value;
 	enum Limit_Value_for_Number {
 		Quantity_input_value = 1,
@@ -28,34 +28,16 @@ Talon::Talon(Doctor* medic) {
 
 	} while (False_Input_Value);
 
-	this->medic = medic;
+}
 
+Talon::Talon(Doctor* medic) {	
+	InputFormatInt(kabinet);
+	this->medic = medic;
 	std::cout << " <Ввод завершён>" << std::endl;
 }
 
 Talon::Talon() {
-
-	bool False_Input_Value;
-	enum Limit_Value_for_Number {
-		Quantity_input_value = 1,
-		Minimum_value_for_number = 0,
-		Maximum_number = 999,
-		Clean_input_stream = '\n'
-	};
-
-	do {
-		std::cout << " Номер кабинета: ";
-
-		False_Input_Value = scanf("%d", &kabinet) != Quantity_input_value
-			|| (kabinet <= Minimum_value_for_number || kabinet > Maximum_number)
-			|| std::cin.get() != Clean_input_stream;
-
-		if (False_Input_Value) {
-			while (std::cin.get() != '\n');
-			std::cout << "\n <Номер кабинета введен некорректно>" << std::endl;
-		}
-
-	} while (False_Input_Value);
+	InputFormatInt(kabinet);
 	medic = new Doctor();
 }
 
@@ -65,9 +47,16 @@ Talon::Talon(Date inp_date, Time inp_time, int inp_kab, Doctor& inp_medic)
 	kabinet{ inp_kab },
 	medic{ &inp_medic } 
 {
-
+	assert(inp_kab > 0 || inp_kab <= 999);
 }
 
+Talon::Talon(const Talon& copy) 
+	: Admission_Date{ copy.Admission_Date },
+	Admission_Time{ copy.Admission_Time },
+	kabinet{ copy.kabinet },
+	medic{ new Doctor(*copy.medic) }
+{
+}
 
 void Talon::PrintInfo() {
 	std::string name = GetDoctor().GetFIO().GetFullName();

@@ -14,6 +14,4 @@ public: bool SetBool();
 public: void PrintInfo();
 public: friend void Time::ChangeTime(int[], Date&);
 public: std::array<int, 3> GetInfo();
-
-public: void ConstrDate(std::array<int, 3> newdate);
 };
