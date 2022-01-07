@@ -22,7 +22,8 @@ Time::Time() {
 		False_Input_Value = !time_with_space.eof() || SetBool();
 
 		if (False_Input_Value) {
-			while (std::cin.get() != '\n');
+			if (!time_with_space.eof())
+				while (std::cin.get() != '\n');
 			std::cout << "\n <Время введено некорректно>" << std::endl;
 		}
 	} while (False_Input_Value);

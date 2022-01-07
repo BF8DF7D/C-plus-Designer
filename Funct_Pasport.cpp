@@ -22,7 +22,8 @@ Pasport::Pasport(){
 		False_Input_Value = !pasport_with_space.eof() || SetBool();
 		
 		if (False_Input_Value) {
-			while (std::cin.get() != '\n');
+			if (!pasport_with_space.eof())
+				while (std::cin.get() != '\n');
 			std::cout << "\n <Паспортные данные введены некорректно>" << std::endl;
 		}
 	} while (False_Input_Value);

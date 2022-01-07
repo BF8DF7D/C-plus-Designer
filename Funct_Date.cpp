@@ -21,7 +21,8 @@ Date::Date() {
 		
 		False_Input_Value = !date_with_space.eof() || SetBool();
 		if (False_Input_Value) {
-			while (std::cin.get() != '\n');
+			if (!date_with_space.eof())
+				while (std::cin.get() != '\n');
 			std::cout << "\n <Дата введена некорректно>" << std::endl;
 		}
 	} while (False_Input_Value);
