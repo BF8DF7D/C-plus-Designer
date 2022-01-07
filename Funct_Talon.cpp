@@ -126,11 +126,13 @@ Talon::Talon() {
 	medic = new Doctor();
 }
 
-Talon::Talon(Date date, Time time, int kabinet, Doctor& medic) {
-	Admission_Date = date;
-	Admission_Time = time;
-	this->kabinet = kabinet;
-	this->medic = &medic;
+Talon::Talon(Date inp_date, Time inp_time, int inp_kab, Doctor& inp_medic)
+	: Admission_Date { inp_date }, 
+	Admission_Time { inp_time },
+	kabinet{ inp_kab },
+	medic{ &inp_medic } 
+{
+
 }
 
 

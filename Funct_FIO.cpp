@@ -12,7 +12,7 @@ FIO::FIO() {
 		std::getline(std::cin, full_name);
 		std::stringstream Name_elements_stream(full_name);
 		Name_elements_stream >> last_name >> first_name >> patronynic;
-		bool False_Input_Value = patronynic.empty() || !Name_elements_stream.eof();
+		False_Input_Value = patronynic.empty() || !Name_elements_stream.eof();
 
 		if (False_Input_Value) {
 			patronynic = "";
