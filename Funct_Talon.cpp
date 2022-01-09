@@ -72,14 +72,6 @@ void Talon::PrintInfo() {
 	std::cout << std::endl;
 }
 
-Talon* Doctor::CreateTalon() {
-	Talon* AdmissionDay = new Talon(this);
-	return AdmissionDay;
-}
-
-void Doctor::ChangeTime(Talon* talon) {
-	talon->Admission_Date = Date();
-}
 
 Talon operator+(Talon& talon, std::string time) {
 	for (int dot_position = 0; dot_position != -1;) {
@@ -107,6 +99,23 @@ Talon operator++(Talon& talon, int) {
 	Talon OldValue = talon;
 	talon.kabinet += 1;
 	return OldValue;
+}
+
+Talon& Talon::operator=(const Talon& copy) {
+	Admission_Date = copy.Admission_Date;
+	Admission_Time = copy.Admission_Time;
+	kabinet = copy.kabinet;
+	medic = new Doctor(*copy.medic);
+	return *this;
+}
+
+Talon* Doctor::CreateTalon() {
+	Talon* AdmissionDay = new Talon(this);
+	return AdmissionDay;
+}
+
+void Doctor::ChangeTime(Talon* talon) {
+	talon->Admission_Date = Date();
 }
 
 Date Talon::GetDate() {

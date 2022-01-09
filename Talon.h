@@ -14,9 +14,11 @@ public: Talon(const Talon&);
 public: ~Talon() {};
 
 public: void PrintInfo();
+
 public: friend Talon operator+(Talon&, std::string);
 public:	friend Talon operator++(Talon&);
 public: friend Talon operator++(Talon&, int);
+public: Talon& operator=(const Talon&);
 
 public: friend Talon* Doctor::CreateTalon();
 public: friend void Doctor::ChangeTime(Talon*);
@@ -25,7 +27,7 @@ public: Date GetDate();
 public: Time GetTime();
 public: int GetKabinet();
 public: Doctor GetDoctor();
-
+	  
 
 	  //functions for demonstarte disadvantages of surface copying
 public: friend void Doctor::ChengeDoctor(std::string);

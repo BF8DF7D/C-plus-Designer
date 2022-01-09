@@ -9,6 +9,20 @@ int main()
     SetConsoleOutputCP(1251);
 
     std::cout << std::endl << std::endl;
+    std::cout << " Инициализация массива через конструктор с одним параметром" << std::endl;
+    std::cout << " Создание параметра:" << std::endl;
+    Doctor* for_array = new Doctor();
+    std::cout << std::endl;
+    std::cout << " Инициализация массива:" << std::endl;
+    Talon* array[3];
+    for (Talon*& elem : array) {
+        elem = new Talon(for_array);
+        std::cout << std::endl;
+    }
+    std::cout << " Печать массива:" << std::endl;
+    for (Talon* elem : array)
+        elem->PrintInfo();
+    std::cout << std::endl << std::endl;
 
     std::cout << " Конструкторы со всеми параметрами" << std::endl;
     std::cout << " Создание параметров:" << std::endl;
@@ -73,6 +87,11 @@ int main()
     one.GetLinkDoctor().ChengeDoctor("Проверка копирования");
     one.PrintInfo();
     three.PrintInfo();
+
+    std::cout << std::endl << std::endl;
+    
+    
+
 
     _getch();
 }
